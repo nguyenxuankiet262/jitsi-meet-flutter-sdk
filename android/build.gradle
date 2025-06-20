@@ -19,9 +19,6 @@ rootProject.allprojects {
         google()
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
-        flatDir {
-            dirs 'libs'  // 👈 thêm thư mục chứa AAR
-        }
     }
 }
 
@@ -44,7 +41,6 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
-        main.jniLibs.srcDirs = ['libs'] // 👈 nếu SDK cần native libs
     }
 
     defaultConfig {
@@ -66,7 +62,7 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation(name: 'sdk-release', ext: 'aar') // 👈 sử dụng AAR đã custom
+    implementation fileTree(dir: 'libs', include: ['*.aar'])
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     testImplementation 'org.mockito:mockito-core:5.0.0'

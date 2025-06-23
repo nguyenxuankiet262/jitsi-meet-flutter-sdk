@@ -16,7 +16,7 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        maven { url uri("$rootDir/maven-repo") }
+        maven { url uri("$projectDir/maven-repo") }
         google()
         mavenCentral()
         maven { url 'https://www.jitpack.io' }
